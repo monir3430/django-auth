@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+ {% block body %}
+	 <h4 class="text-md-center mt-1">Enter Your Information to Sign Up</h4>
+
+	<form method="POST" class="mx-auto w-50 mt-3 mb-3 border border-2 border-success bg-light" novalidate>
+ 		{% csrf_token %}
+    <div class="p-3">
+        {% for f in form %}
+            <div class="mb-1 row align-items-center">
+                <div class="col-3">
+                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }} :</label>
+                </div>
+                <div class="col-8">
+                    <!-- Manually adding classes -->
+                    <div class="mb-1">
+                        <input class="form-control form-control-lg" id="{{ f.id_for_label }}" name="{{ f.name }}" value="{{ f.value|default:'' }}">
+                    </div>
+                </div>
+
+                {% if f.errors %}
+                    <div class="text-danger">
+                        {{ f.errors | striptags}}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button class="btn btn-primary d-block mx-auto" type="submit">Submit</button>
+    </div>
+</form>
+
+
+ {% endblock %}
