@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+	{% csrf_token %}
+<h1>Here is {{ user }} profile</h1>
+	<p><a href="{% url 'passchange' %}">Change Your Password</a></p>
+	<p><a href="{% url 'passchange2' %}">Change Your Password without Old</a></p>
+	<p><a href="{% url 'change_user_data' %}">Change Your info</a></p>
+
+{% endblock %}

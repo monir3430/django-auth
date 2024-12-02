@@ -9,6 +9,11 @@
                     <h1 class="text-center mb-4">Login</h1>
                     <form method="post" novalidate>
                         {% csrf_token %}
+						<div class="text-danger">
+							{% for error in form.non_field_errors %}
+								<p>{{ error }}</p>
+							{% endfor %}
+						</div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" name="username" id="username" class="form-control" required>
